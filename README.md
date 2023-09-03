@@ -12,10 +12,6 @@ This backend provide all the necessary data and endpoint to consulting the stora
 
 From now we are generating artificial data to allow frontend interact with backend.
 
-# Next steps
-
-Create the endpoints to create new data
-
 # How to use?
 
 You shoud have install the `docker-compose`. You can download [here](https://docs.docker.com/compose/install/)
@@ -35,3 +31,7 @@ Execute (in Windows should be `docker compose`):
 > docker-compose down
 > docker volume rm equipe-66_mysql_data
 ```
+
+# Next steps
+
+Create the endpoints to create new data
