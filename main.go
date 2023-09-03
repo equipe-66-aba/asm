@@ -9,7 +9,6 @@ import (
 	"github.com/equipe-66-aba/asm/courses"
 	"github.com/equipe-66-aba/asm/jobs"
 	"github.com/equipe-66-aba/asm/users"
-	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -26,9 +25,9 @@ func main() {
 	http.HandleFunc("/jobs/badges", jobs.JobsBadges)
 
 	// http.HandleFunc("/send-course-workload", user.Workload)
-
-	// http.HandleFunc("/new-user", jobs.JobsBadges)
-	// http.HandleFunc("/new-course", jobs.JobsBadges)
+	// http.HandleFunc("/new-user", user.New)
+	// http.HandleFunc("/new-course", course.New)
+	// http.HandleFunc("/new-company", company.New)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
