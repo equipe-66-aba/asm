@@ -72,7 +72,7 @@ func getCompanysJobs() []CompanyJobs {
 	}
 	defer db.Close()
 
-	results, err := db.Query(`SELECT c.name, j.title, j.job_description FROM jobs j 
+	results, err := db.Query(`SELECT c.name, j.title, j.job_description, j.istrial FROM jobs j 
 								JOIN companys c ON c.id = j.companyID`)
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
@@ -84,7 +84,7 @@ func getCompanysJobs() []CompanyJobs {
 
 		var cj CompanyJobs
 		var job jobs.Job
-		err = results.Scan(&cj.CompanyName, &job.Title, &job.Job_description)
+		err = results.Scan(&cj.CompanyName, &job.Title, &job.Job_description, &job.IsTrial)
 		if err != nil {
 			panic(err.Error()) // proper error handling instead of panic in your app
 		}

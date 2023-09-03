@@ -21,6 +21,7 @@ func main() {
 	http.HandleFunc("/company/jobs", companys.CompanysJobs)
 	http.HandleFunc("/courses", courses.Courses)
 	http.HandleFunc("/courses/badges", courses.CourseBadges)
+	http.HandleFunc("/courses/tracks", courses.CourseTracks)
 	http.HandleFunc("/jobs", jobs.Jobs)
 	http.HandleFunc("/jobs/badges", jobs.JobsBadges)
 

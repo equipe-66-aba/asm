@@ -15,6 +15,7 @@ type Job struct {
 	CompanyID       int    `json:"company-id,omitempty"`
 	Title           string `json:"title,omitempty"`
 	Job_description string `json:"job-description,omitempty"`
+	IsTrial         string `json:"temporary-job,omitempty"`
 }
 
 type JobBadge struct {
@@ -51,7 +52,7 @@ func getJobs() []*Job {
 	var jobs []*Job
 	for results.Next() {
 		var j Job
-		err = results.Scan(&j.ID, &j.CompanyID, &j.Title, &j.Job_description)
+		err = results.Scan(&j.ID, &j.CompanyID, &j.Title, &j.Job_description, &j.IsTrial)
 		if err != nil {
 			panic(err.Error()) // proper error handling instead of panic in your app
 		}
@@ -70,7 +71,7 @@ func getJobsBadges() []JobBadge {
 	}
 	defer db.Close()
 
-	results, err := db.Query(`SELECT j.title, j.job_description, b.name, b.id as idb FROM badges_jobs bj 
+	results, err := db.Query(`SELECT j.title, j.job_description, j.istrial, b.name, b.id as idb FROM badges_jobs bj 
 								JOIN badges b ON b.id = bj.badgeID
 								JOIN jobs j ON j.id = bj.jobsID`)
 	if err != nil {
@@ -83,7 +84,7 @@ func getJobsBadges() []JobBadge {
 
 		var jb Job
 		var badge badges.Badge
-		err = results.Scan(&jb.Title, &jb.Job_description, &badge.Name, &badge.ID)
+		err = results.Scan(&jb.Title, &jb.Job_description, &jb.IsTrial, &badge.Name, &badge.ID)
 		if err != nil {
 			panic(err.Error()) // proper error handling instead of panic in your app
 		}

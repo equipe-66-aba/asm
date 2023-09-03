@@ -37,13 +37,14 @@ CREATE TABLE `jobs`
     companyID bigint,
     title varchar(255) NOT NULL,
     job_description varchar(255) NOT NULL,
+    istrial BOOLEAN,
     PRIMARY KEY (`id`),
     FOREIGN KEY (companyID) REFERENCES companys(id)
 );
 
-INSERT INTO `jobs` (`companyID`,`title`,`job_description`)
-VALUES ('1', 'engineer in microeletronics', 'we need this guy to be the best engineer in microeletronics'),
-       ('2', 'specialist in analogic microeletronics', 'specialist in analogic microeletronics we will have a lot of difficulty jobs');
+INSERT INTO `jobs` (`companyID`,`title`,`job_description`, `istrial`)
+VALUES ('1', 'engineer in microeletronics', 'we need this guy to be the best engineer in microeletronics', true),
+       ('2', 'specialist in analogic microeletronics', 'specialist in analogic microeletronics we will have a lot of difficulty jobs', false);
 
 CREATE TABLE `coursers`
 (
@@ -120,3 +121,44 @@ CREATE TABLE `users_coursers`
 INSERT INTO `users_coursers` (`userID`,`courserID`, `workloadCompleted`)
 VALUES ('1', '1', 20),
        ('2', '2', 40);
+
+
+CREATE TABLE `tracks`
+(
+    id   bigint auto_increment,
+    name varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+);
+
+INSERT INTO `tracks` (`name`)
+VALUES ('analog'),
+       ('digital');
+
+CREATE TABLE `sub_tracks`
+(
+    id   bigint auto_increment,
+    trackID bigint,
+    name varchar(255) NOT NULL,
+    PRIMARY KEY (`id`, `trackID`),
+    FOREIGN KEY (trackID) REFERENCES tracks(id)
+);
+
+INSERT INTO `sub_tracks` (`trackID`, `name`)
+VALUES ('1', 'layout'),
+       ('1', 'design'),
+       ('2', 'bytesnbits');
+
+CREATE TABLE `courses_sub_tracks`
+(
+    id   bigint auto_increment,
+    courseID bigint,
+    trackID bigint,
+    subTrackID bigint,
+    PRIMARY KEY (`id`, trackID, subTrackID),
+    FOREIGN KEY (trackID, subTrackID) REFERENCES sub_tracks(trackID, id),
+    FOREIGN KEY (courseID) REFERENCES coursers(id)
+);
+
+INSERT INTO `courses_sub_tracks` (`courseID`,`trackID`,`subTrackID`)
+VALUES ('1', '1', '1'),
+       ('2', '2', '3');
