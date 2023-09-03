@@ -4,11 +4,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Solomon04/go-docker-tutorial/badges"
-	"github.com/Solomon04/go-docker-tutorial/companys"
-	"github.com/Solomon04/go-docker-tutorial/courses"
-	"github.com/Solomon04/go-docker-tutorial/jobs"
-	"github.com/Solomon04/go-docker-tutorial/users"
+	"github.com/equipe-66-aba/asm/badges"
+	"github.com/equipe-66-aba/asm/companys"
+	"github.com/equipe-66-aba/asm/courses"
+	"github.com/equipe-66-aba/asm/jobs"
+	"github.com/equipe-66-aba/asm/users"
 	_ "github.com/go-sql-driver/mysql"
 )
 

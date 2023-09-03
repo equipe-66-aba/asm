@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Solomon04/go-docker-tutorial/badges"
+	"github.com/equipe-66-aba/asm/badges"
 )
 
 type Job struct {

@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Solomon04/go-docker-tutorial/jobs"
+	"github.com/equipe-66-aba/asm/jobs"
 )
 
 type Company struct {
